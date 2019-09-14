@@ -18,59 +18,61 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-const cardCont = document.querySelector('cards-container');
+const cardsContainer = document.querySelector('.cards-container');
 
-axio.get('https://lambda-times-backend.herokuapp.com/articles')
-    .then((results) => {
-        const bootstrap = results.data.articles.bootstrap;
-        const javascript = results.data.articles.javascript;
-        const jquery = results.data.articles.jquery;
-        const node = results.data.articles.node;
-        const technology = results.data.articles.technology;
-        bootstrap.forEach((obj) => {
-            const create = CreateArticles(obj);
-            cardCont.appendChild(create);
-        });
-        javascript.forEach((obj) => {
-            const create = CreateArticles(obj);
-            cardCont.appendChild(create);
-        });
-        jquery.forEach((obj) => {
-            const create = CreateArticles(obj);
-            cardCont.appendChild(create);
-        });
-        node.forEach((obj) => {
-            const create = CreateArticles(obj);
-            cardCont.appendChild(create);
-        });
-        technology.forEach((obj) => {
-            const create = CreateArticles(obj);
-            cardCont.appendChild(create);
-        });
-    })
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
 
-    function CreateArticles(obj) {
-        const card = document.createElement('div');
-        const hLine = document.createElement('div');
-        const author = document.createElement('div');
-        const imgContainer = document.createElement('div');
-        const img = document.createElement('img');
-        const by = document.createElement('span');
+  .then((results) => {
+    const bootstrap = results.data.articles.bootstrap;
+    const javascript = results.data.articles.javascript;
+    const jquery = results.data.articles.jquery;
+    const node = results.data.articles.node;
+    const technology = results.data.articles.technology;
+    bootstrap.forEach((obj) => {
+        const create = CreateArticles(obj);
+        cardsContainer.appendChild(create);
+    });
+    javascript.forEach((obj) => {
+        const create = CreateArticles(obj);
+        cardsContainer.appendChild(create);
+    });
+    jquery.forEach((obj) => {
+        const create = CreateArticles(obj);
+        cardsContainer.appendChild(create);
+    });
+    node.forEach((obj) => {
+        const create = CreateArticles(obj);
+        cardsContainer.appendChild(create);
+    });
+    technology.forEach((obj) => {
+        const create = CreateArticles(obj);
+        cardsContainer.appendChild(create);
+    });
+    
+});
 
-        hLine.textContent = obj.headline;
-        img.src = obj.authorPhoto;
-        by.textContent = obj.authorName;
+function CreateArticles(obj) {
+    const card = document.createElement('div');
+    const hLine = document.createElement('div');
+    const author = document.createElement('div');
+    const imgContainer = document.createElement('div');
+    const img = document.createElement('img');
+    const by = document.createElement('span');
 
-        card.appendChild(hLine);
-        card.appendChild(author);
-        author.appendChild(imgContainer);
-        imgContainer.appendChild(img);
-        author.appendChild(by);
+    hLine.textContent = obj.headline;
+    img.src = obj.authorPhoto;
+    by.textContent = obj.authorName;
 
-        card.classList.add('card');
-        hLine.classList.add('headline');
-        author.classList.add('author');
-        imgContainer.classList.add('img-container');
+    card.appendChild(hLine);
+    card.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(img);
+    author.appendChild(by);
 
-        return card;
-    }
+    card.classList.add('card');
+    hLine.classList.add('headline');
+    author.classList.add('author');
+    imgContainer.classList.add('img-container');
+
+    return card;
+}
