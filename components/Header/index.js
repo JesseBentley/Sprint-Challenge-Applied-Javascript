@@ -17,16 +17,16 @@ function Header() {
     const today = new Date();
 
     date.textContent = today;
-    h1.textContent = 'Lambda Times';
-    temp.textContent = '98°'
+    h1.textContent = 'Lamda Times';
+    temp.textContent = '98°';
 
     header.classList.add('header');
     date.classList.add('date');
     temp.classList.add('temp');
 
-    header.appendChild('date');
-    header.appendChild('h1');
-    header.appendChild('temp');
+    header.appendChild(date);
+    header.appendChild(h1);
+    header.appendChild(temp);
 
     return header;
 }
